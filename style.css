@@ -1,0 +1,281 @@
+:root {
+    /* font-family */
+    --ff-base         : "Lexend Deca", serif;
+    --ff-bigShoulders : "Big Shoulders Display", serif;
+    
+    /* font-size */
+    --fs-800:    2.5rem;
+    --fs-600:    1.5rem;
+    --fs-400: 0.9375rem;
+
+    /* font-wight */
+    --fw-regular: 400;
+    --fw-bold:    700;
+
+    /* color */
+    --clr-orange:   hsl(31, 77%, 52%);
+    --clr-cyan:     hsl(184, 100%, 22%);
+    --clr-darkCyan: hsl(179, 100%, 13%);
+    --clr-white:    hsl(0, 0%, 95%);
+}
+
+/* for custom color */
+.card:is(.card--orange) {
+    --bg-card:  var(--clr-orange);
+    --clr-card: var(--clr-white);
+    --clr-btn : var(--clr-orange);
+    --bg-btn: var(--clr-white);
+    --hover-clr-btn: var(--clr-white);
+}
+
+.card:is(.card--cyan) {
+    --bg-card:  var(--clr-cyan);
+    --clr-card: var(--clr-white);
+    --clr-btn : var(--clr-cyan);
+    --bg-btn: var(--clr-white);
+    --hover-clr-btn: var(--clr-white);
+}
+
+.card:is(.card--darkCyan) {
+    --bg-card:  var(--clr-darkCyan);
+    --clr-card: var(--clr-white);
+    --clr-btn:  var(--clr-darkCyan);
+    --bg-btn: var(--clr-white);
+    --hover-clr-btn: var(--clr-white);
+}
+
+/* set box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+/* Set up the body */
+body{
+    padding-block: 5.5rem;
+    font-family: var(--ff-base);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+    background-color: var(--clr-white);
+
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+/* Reset list */
+ul[type = "menus"]{list-style: none;}
+
+/* Reset link */
+a[type = "menus"]{text-decoration: none;}
+
+/* Make images easier to work with */
+img,
+picture {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Make form elements to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove animation for people who' ve turned them off */
+@media(pafers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* -------------------------------------------------------- */
+/*                         button                           */
+/* -------------------------------------------------------- */
+
+.btn {
+    --btn-padding-inline: 2rem; 
+    --btn-padding-block:  0.75rem;
+    --border: 0.125rem;
+
+    padding-block: var(--btn-padding-block);
+    padding-inline: var(--btn-padding-inline);
+    border-radius: 1.5625rem; /*25px*/
+    line-height: 1.5625rem;
+    color: var(--clr-btn, hsl(0, 0%, 30%));
+    background-color: var(--bg-btn);
+    cursor: pointer;
+    text-decoration: none;
+
+    display: block;
+    outline: none;
+    width: fit-content;
+}
+
+.btn:hover {
+    padding-block: calc(var(--btn-padding-block) - var(--border));
+    padding-inline: calc(var(--btn-padding-inline) - var(--border));
+
+    background: transparent;
+    color: var(--hover-clr-btn);
+    border: var(--border) solid var(--hover-clr-btn);
+}
+
+/* -------------------------------------------------------- */
+/*                        wrapper                           */
+/* -------------------------------------------------------- */
+
+.wrapper {
+    --space-lr: 1.5rem;
+    width: min(100% - (var(--space-lr) * 2), 57.5rem);/*920px*/
+    margin-inline: auto;
+}
+
+/* -------------------------------------------------------- */
+/*                           card                           */
+/* -------------------------------------------------------- */
+
+.card {
+    width: min(100%, 25rem);
+    margin-inline: auto;
+    padding: 3rem;
+    color: var(--clr-card);
+    background-color: var(--bg-card);
+
+    display: grid;
+    grid-template-rows: max-content max-content 1fr max-content;
+}
+
+.card:first-child{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card:last-child{
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.card .cardImage {
+    width: 4rem;
+    height: 2.5rem;
+    object-fit: scale-down;
+}
+
+.card .cardTitle {
+    font-size: var(--fs-800);
+    font-weight: var(--fw-bold);
+    font-family: var(--ff-bigShoulders);
+}
+
+.card .cardInfo {
+    line-height: 1.5625rem;
+}
+
+.card .cardImage + .cardTitle {
+    margin-block-start: 2.1875rem;
+}
+
+.card .cardTitle + .cardInfo {
+    margin-block-start: 1.5625rem;
+}
+
+.card .cardInfo + a {
+    margin-block-start: 1.5625rem;
+}
+
+@media (min-width: 37.5rem) {
+
+    /* -------------------------------------------------------- */
+    /*                        wrapper                           */
+    /* -------------------------------------------------------- */
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* -------------------------------------------------------- */
+    /*                         card                             */
+    /* -------------------------------------------------------- */
+
+    .card {
+        width: 100%;
+    }
+
+    .card:first-child{
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0;
+    }
+
+    .card:nth-child(2) {
+        border-top-right-radius: 0.5rem;
+    }
+    
+    .card:last-child{
+        grid-column: span 2;
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius:  0.5rem;
+    }
+    
+}
+
+@media (min-width: 56.25rem) {
+
+    /* -------------------------------------------------------- */
+    /*                        wrapper                           */
+    /* -------------------------------------------------------- */
+
+    .wrapper {
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    /* -------------------------------------------------------- */
+    /*                        wrapper                           */
+    /* -------------------------------------------------------- */
+
+    .card {
+        min-height: 500px;
+    }
+
+    .card:first-child{
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        border-top-right-radius: 0;
+    }
+    
+    .card:nth-child(2) {
+        border-top-right-radius: 0;
+    }
+
+    .card:last-child{
+        grid-column: span 1;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius:  0;
+    }
+    
+}
